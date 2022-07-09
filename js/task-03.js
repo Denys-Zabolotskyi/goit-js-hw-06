@@ -12,3 +12,46 @@ const images = [
     alt: 'Group of Horses Running',
   },
 ];
+const galleryEl = document.querySelector('.gallery');
+//************* #1 ************** */
+// console.log(galleryEl);
+// const galleryItemEl = images.map(image => {
+//   const itemEl = document.createElement('li');
+//   itemEl.classList.add('list');
+//   // console.log(itemEl);
+
+//   const imgEl = document.createElement('img');
+//   imgEl.src = image.url;
+//   imgEl.alt = image.alt;
+//   itemEl.append(imgEl);
+//   return itemEl;
+//   // console.log(imgEl);
+// });
+// console.log(galleryItemEl);
+// galleryEl.append(...galleryItemEl);
+
+//************* #2 ************** */
+// const makeGallery = image => {
+//   return images.map(image => {
+//     const itemEl = document.createElement('li');
+//     itemEl.classList.add('list');
+//     const imgEl = document.createElement('img');
+//     imgEl.src = image.url;
+//     imgEl.alt = image.alt;
+//     itemEl.append(imgEl);
+//     console.log(itemEl);
+//     return itemEl;
+//   });
+// };
+// const elements = makeGallery(images);
+// console.log(elements);
+// galleryEl.append(...elements);
+
+//************* #3 ************** */
+const makeGalleryMarkup = image => {
+  return `<li class = list><img src=${image.url} alt= ${image.alt}></li>`;
+};
+// console.log(makeGalleryMarkup(images));
+const makeGallery = images.map(makeGalleryMarkup).join('');
+console.log(makeGallery);
+galleryEl.insertAdjacentHTML('beforeend', makeGallery);
