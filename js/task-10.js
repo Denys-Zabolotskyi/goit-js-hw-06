@@ -1,84 +1,23 @@
-// const inputEl = document.querySelector('input');
-// console.log(inputEl.value);
-// console.log(inputEl);
-// const btnCreate = document.querySelector('button[data-create]');
-// // console.log(btnCreate);
-// const btnDestroy = document.querySelector('button[data-destroy]');
-// // console.log(btnDestroy);
-// const divBoxesEl = document.querySelector('#boxes');
-// console.log(divBoxesEl);
-// inputEl.addEventListener('input', () => { });
+const refs = {
+  inputEl: document.querySelector('input'),
+  btnCreate: document.querySelector('button[data-create]'),
+  btnDestroy: document.querySelector('button[data-destroy]'),
+  boxesEl: document.querySelector('#boxes'),
+};
 
 //************addEventListener******************** */
-// inputEl.addEventListener('input', onInputChange);
-// btnCreate.addEventListener('click', onBtnCreateElements);
-// btnDestroy.addEventListener('click', onBtnDestroyElements);
-
+refs.btnCreate.addEventListener('click', createBoxes);
+refs.btnDestroy.addEventListener('click', destroyBoxes);
 //****************function******************************** */
-// function onInputChange(event) {
-//   console.log(event.currentTarget.value);
-//   return event.currentTarget.value;
-// }
-
-// function onBtnCreateElements(event, onInputChange) {
-//   console.log(`Creates elements ${onInputChange}`);
-//   console.log(onInputChange);
-// }
-// function onBtnDestroyElements(event) {
-//   console.log('Destroy elements');
-// }
-
-//***********Test1* */
-// const createBtn = document.querySelector('[data-create]');
-// const destroyBtn = document.querySelector('[data-destroy]');
-// const inputEl = document.querySelector('input');
-// const listEl = document.querySelector('#controls');
-// const containerEl = document.querySelector('#boxes');
-
-// createBtn.addEventListener('click', () => createBoxes(inputEl.value));
-// destroyBtn.addEventListener('click', destroyBoxes);
-
-// function createBoxes(amount) {
-//   let size = 20;
-//   const boxEl = [];
-
-//   for (let i = 0; i < amount; i += 1) {
-//     size = size + 10;
-//     const box = document.createElement('div');
-//     box.style.backgroundColor = `${getRandomHexColor()}`;
-//     box.style.width = size + 'px';
-//     box.style.height = size + 'px';
-//     box.classList.add('box-item');
-//     boxEl.push(box);
-//   }
-//   containerEl.append(...boxEl);
-//   return containerEl;
-// }
-
-// function destroyBoxes() {
-//   containerEl.innerHTML = '';
-//   inputEl.value = '';
-// }
-
-// function getRandomHexColor() {
-//   return `#${Math.floor(Math.random() * 16777215)
-//     .toString(16)
-//     .padStart(6, 0)}`;
-// }
-//***********Test2* */
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
 }
 
-const inputRef = document.querySelector('#controls input');
-const createBtnRef = document.querySelector('button[data-create]');
-const destroyBtnRef = document.querySelector('button[data-destroy]');
-const boxesRef = document.querySelector('#boxes');
+function createBoxes(amount) {
+  amount = Number(refs.inputEl.value);
 
-const createBoxes = function (amount) {
-  amount = Number(inputRef.value);
   const boxesArray = [];
 
   for (let i = 0; i < amount; i += 1) {
@@ -89,12 +28,9 @@ const createBoxes = function (amount) {
     boxesArray[i].style.backgroundColor = getRandomHexColor();
   }
 
-  boxesRef.append(...boxesArray);
-};
+  refs.boxesEl.append(...boxesArray);
+}
 
-const destroyBoxes = function () {
-  boxesRef.innerHTML = '';
-};
-
-createBtnRef.addEventListener('click', createBoxes);
-destroyBtnRef.addEventListener('click', destroyBoxes);
+function destroyBoxes() {
+  refs.boxesEl.innerHTML = '';
+}
